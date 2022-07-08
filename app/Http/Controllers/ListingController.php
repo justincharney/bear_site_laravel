@@ -7,6 +7,7 @@ use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ListingController extends Controller
 {
@@ -42,9 +43,15 @@ class ListingController extends Controller
             'description' => 'required'
         ]);
 
-        if($request->hasFile('logo')) {
-            $formFields['logo'] = $request->file('logo')->store('logos', 'public');
+        $dir = 'images';
+        if($files = Storage::disk('web')->allFiles('images')) {
+            $path = $files[array_rand($files)];
+            $formFields['logo'] = $path;
         }
+
+        /* if($request->hasFile('logo')) {
+            $formFields['logo'] = $request->file('logo')->store('logos', 'public');
+        } */
 
         // When creating a new listing, we link the current user's id
         $formFields['user_id'] = Auth::id();

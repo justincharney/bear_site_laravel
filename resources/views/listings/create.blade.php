@@ -72,7 +72,7 @@
                 <p class="text-red-500 text-xs mt-1">{{$message}}</p>
             @enderror
 
-            <div class="mb-6">
+            {{-- <div class="mb-6">
                 <label for="logo" class="inline-block text-lg mb-2">
                     Photo
                 </label>
@@ -81,7 +81,7 @@
 
             @error('logo')
                 <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-            @enderror
+            @enderror --}}
 
             <div class="mb-6">
                 <label for="description" class="inline-block text-lg mb-2">
